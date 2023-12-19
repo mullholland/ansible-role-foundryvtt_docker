@@ -1,0 +1,7 @@
+{% if foundryvtt_docker_secrets_enable and foundryvtt_docker_secrets|length %}
+{
+{% for foundryvtt_docker_secret in foundryvtt_docker_secrets %}
+  {{ foundryvtt_docker_secret }}{{ "," if not loop.last else "" }}
+{% endfor %}
+}
+{% endif %}

@@ -1,0 +1,27 @@
+[Unit]
+Description={{ app_name }} service with docker compose
+Requires=docker.service network-online.target
+After=docker.service network-online.target
+
+[Service]
+Type=simple
+TimeoutStartSec=15min
+Restart=always
+
+RemainAfterExit=true
+WorkingDirectory=/opt/{{ app_name }}
+
+# Start
+ExecStartPre=docker compose pull --quiet --ignore-pull-failures
+ExecStartPre=docker compose build --pull
+ExecStart=docker compose up -d --remove-orphans
+
+# Start
+ExecStop=docker compose down --remove-orphans
+
+# Reload
+ExecReload=docker compose pull --quiet --ignore-pull-failures
+ExecReload=docker compose build --pull
+
+[Install]
+WantedBy=multi-user.target

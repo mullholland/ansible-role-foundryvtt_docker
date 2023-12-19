@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Installs and configures foundryvtt container based on felddy/foundryvtt-docker
+  homepage: https://mullholland.net
+  topics: cloud, development, webserver, caddy, foundryvtt, tabletop, ansible, molecule, tox, playbook

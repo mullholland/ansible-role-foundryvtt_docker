@@ -1,0 +1,10 @@
+---
+- name: foundryvtt_systemd_reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: foundryvtt_restart
+  ansible.builtin.service:
+    name: "{{ app_name }}"
+    state: restarted
+    enabled: true

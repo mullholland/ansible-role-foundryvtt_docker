@@ -1,0 +1,36 @@
+---
+galaxy_info:
+  author: mullholland
+  namespace: mullholland
+  role_name: foundryvtt_docker
+  description: Installs and configures foundryvtt container based on felddy/foundryvtt-docker
+  license: MIT
+  company: none
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Amazon
+      versions:
+        - Candidate
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - cloud
+    - development
+    - webserver
+    - caddy
+    - foundryvtt
+    - tabletop
+
+dependencies: []

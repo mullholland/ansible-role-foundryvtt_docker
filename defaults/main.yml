@@ -1,0 +1,49 @@
+---
+#
+# General config
+#
+foundryvtt_docker_network_name: "web"
+foundryvtt_docker_base_path: "/opt"
+foundryvtt_docker_timezone: "Europe/Berlin"
+
+# User/Group of the stack. Everything is mapped to this, instead of root.
+foundryvtt_docker_user: "homelab"
+foundryvtt_docker_uid: "900"
+foundryvtt_docker_group: "homelab"
+foundryvtt_docker_gid: "900"
+
+# which container version to install
+# https://github.com/felddy/foundryvtt-docker
+# can also be latest
+foundryvtt_docker_version: "felddy/foundryvtt:latest"
+
+# Secrets
+foundryvtt_docker_secrets_enable: false
+# secrets are saved in the config.json and added via [docker secrets](https://docs.docker.com/engine/swarm/secrets/)
+# Will be ignored if empty
+foundryvtt_docker_secrets: []
+# Overrides FOUNDRY_ADMIN_KEY environment variable.
+# - 'foundry_admin_key: ""'
+# Overrides FOUNDRY_LICENSE_KEY environment variable.
+# - 'foundry_license_key: ""'
+# Overrides FOUNDRY_PASSWORD environment variable.
+# - 'foundry_password: ""'
+# Overrides FOUNDRY_PASSWORD_SALT environment variable.
+# - 'foundry_password_salt: ""'
+# Overrides FOUNDRY_USERNAME environment variable.
+# - 'foundry_username: ""'
+
+# additional docker compose environment varaibles
+# https://github.com/felddy/foundryvtt-docker?tab=readme-ov-file#optional-variables
+foundryvtt_docker_environment_variables:
+  - 'FOUNDRY_HOSTNAME: "{{ inventory_hostname }}"'
+  - 'FOUNDRY_IP_DISCOVERY: false'
+  - 'FOUNDRY_MINIFY_STATIC_FILES: true'
+# which port to expose. can be empty if used with traefik for example
+foundryvtt_docker_port: "30000"
+foundryvtt_docker_labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.foundry.entryPoints=https"
+  - "traefik.http.routers.foundry.rule=Host(`foundry.example.com`)"
+  - "traefik.http.routers.foundry.tls.certResolver=letsEncrypt"
+  - "traefik.http.routers.foundry.tls=true"

@@ -1,0 +1,54 @@
+---
+- name: foundryvtt | set application facts
+  ansible.builtin.set_fact:
+    app_name: "foundryvtt"
+    app_image: "{{ foundryvtt_docker_version }}"
+    app_network: "{{ foundryvtt_docker_network_name }}"
+    app_base_path: "{{ foundryvtt_docker_base_path }}"
+    app_user: "{{ foundryvtt_docker_user }}"
+    app_uid: "{{ foundryvtt_docker_uid }}"
+    app_group: "{{ foundryvtt_docker_group }}"
+    app_gid: "{{ foundryvtt_docker_gid }}"
+    app_timezone: "{{ foundryvtt_docker_timezone }}"
+    app_environment_variables: "{{ foundryvtt_docker_environment_variables }}"
+    app_labels: "{{ foundryvtt_docker_labels }}"
+
+- name: "foundryvtt | Ensure app folders exists"
+  ansible.builtin.file:
+    name: '{{ app_base_path }}/{{ app_name }}/{{ item }}'
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+    mode: "0770"
+    state: directory
+  with_items:
+    - "config"
+    - "data"
+
+- name: "foundryvtt | Ensure config config.json exists"
+  ansible.builtin.template:
+    src: "config.json.j2"
+    dest: "{{ app_base_path }}/{{ app_name }}/config/config.json"
+    mode: "0640"
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+  notify: foundryvtt_restart
+
+- name: "foundryvtt | create docker-compose.yml"
+  ansible.builtin.template:
+    src: "docker-compose.yml.j2"
+    dest: "{{ app_base_path }}/{{ app_name }}/docker-compose.yml"
+    mode: "0640"
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+  notify: foundryvtt_restart
+
+- name: "foundryvtt | Create systemd service"
+  ansible.builtin.template:
+    src: "systemd.service.j2"
+    dest: "/etc/systemd/system/{{ app_name }}.service"
+    mode: "0770"
+    owner: "root"
+    group: "root"
+  notify:
+    - foundryvtt_systemd_reload
+    - foundryvtt_restart

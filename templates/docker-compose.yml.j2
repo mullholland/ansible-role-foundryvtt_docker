@@ -1,0 +1,43 @@
+---
+version: "3.3"
+
+networks:
+  {{ app_network }}:
+    external: true
+
+secrets:
+  config_json:
+    file: config/config.json
+
+services:
+  foundry:
+    image: "{{ app_image }}"
+    hostname: "{{ app_name }}"
+    init: true
+    restart: always
+    volumes:
+      - {{ app_base_path }}/{{ app_name }}/data:/data
+    environment:
+      PUID: {{ app_uid }}
+      PGID: {{ app_gid }}
+      TZ: {{ app_timezone }}
+      FOUNDRY_UID: "{{ app_uid }}"
+      FOUNDRY_GID: "{{ app_gid }}"
+      TIMEZONE: "{{ app_timezone }}"
+{% for app_environment in app_environment_variables %}
+      {{ app_environment }}
+{% endfor %}
+    networks:
+      - {{ app_network }}
+{% if foundryvtt_docker_port and foundryvtt_docker_port|length %}
+    ports:
+      - {{ foundryvtt_docker_port }}:30000/tcp
+{% endif %}
+    secrets:
+      - source: config_json
+        target: config.json
+{% if foundryvtt_docker_labels and foundryvtt_docker_labels|length %}
+    labels:
+{% for foundryvtt_docker_label in foundryvtt_docker_labels %}
+      - "{{ foundryvtt_docker_label}}"
+{% endfor %}{% endif %}

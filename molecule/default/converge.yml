@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    foundryvtt_docker_secrets_enable: true
+    foundryvtt_docker_secrets:
+      - 'foundry_admin_key: "SuperSecret"'
+
+  roles:
+    - role: "ansible-role-foundryvtt_docker"

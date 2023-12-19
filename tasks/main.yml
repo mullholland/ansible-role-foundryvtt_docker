@@ -1,0 +1,8 @@
+---
+- name: create user
+  ansible.builtin.include_tasks:
+    file: user.yml
+
+- name: prepare foundryvtt
+  ansible.builtin.include_tasks:
+    file: foundryvtt.yml
