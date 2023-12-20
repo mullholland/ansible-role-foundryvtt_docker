@@ -53,7 +53,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # IMPORTANT
 # You should configure the FOUNDRY_USERNAME and FOUNDRY_PASSWORD
 # either via secrets or environment varaibles to get a running foundryvtt container
-# witout it, the container will start with an error
+# without it, the container will start with an error
 
 # General config
 foundryvtt_docker_network_name: "web"
@@ -87,7 +87,7 @@ foundryvtt_docker_secrets: []
 # Overrides FOUNDRY_USERNAME environment variable.
 # - 'foundry_username: ""'
 
-# additional docker compose environment varaibles
+# additional docker compose environment variables
 # https://github.com/felddy/foundryvtt-docker?tab=readme-ov-file#optional-variables
 foundryvtt_docker_environment_variables:
   - 'FOUNDRY_HOSTNAME: "{{ inventory_hostname }}"'
