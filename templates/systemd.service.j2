@@ -12,16 +12,16 @@ RemainAfterExit=true
 WorkingDirectory=/opt/{{ app_name }}
 
 # Start
-ExecStartPre=docker compose pull --quiet --ignore-pull-failures
-ExecStartPre=docker compose build --pull
-ExecStart=docker compose up -d --remove-orphans
+ExecStartPre={{ foundryvtt_docker_executable_path.stdout }} compose pull --quiet --ignore-pull-failures
+ExecStartPre={{ foundryvtt_docker_executable_path.stdout }} compose build --pull
+ExecStart={{ foundryvtt_docker_executable_path.stdout }} compose up -d --remove-orphans
 
 # Start
-ExecStop=docker compose down --remove-orphans
+ExecStop={{ foundryvtt_docker_executable_path.stdout }} compose down --remove-orphans
 
 # Reload
-ExecReload=docker compose pull --quiet --ignore-pull-failures
-ExecReload=docker compose build --pull
+ExecReload={{ foundryvtt_docker_executable_path.stdout }} compose pull --quiet --ignore-pull-failures
+ExecReload={{ foundryvtt_docker_executable_path.stdout }} compose build --pull
 
 [Install]
 WantedBy=multi-user.target

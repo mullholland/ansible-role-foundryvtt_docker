@@ -1,7 +1,10 @@
 ---
-#
+# IMPORTANT
+# You should configure the FOUNDRY_USERNAME and FOUNDRY_PASSWORD
+# either via secrets or environment varaibles to get a running foundryvtt container
+# witout it, the container will start with an error
+
 # General config
-#
 foundryvtt_docker_network_name: "web"
 foundryvtt_docker_base_path: "/opt"
 foundryvtt_docker_timezone: "Europe/Berlin"
