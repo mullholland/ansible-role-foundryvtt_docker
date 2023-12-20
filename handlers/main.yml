@@ -5,6 +5,6 @@
 
 - name: foundryvtt_restart
   ansible.builtin.service:
-    name: "{{ app_name }}"
+    name: "foundryvtt"
     state: restarted
     enabled: true
