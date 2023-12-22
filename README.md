@@ -74,6 +74,7 @@ foundryvtt_docker_version: "felddy/foundryvtt:latest"
 
 # Secrets
 foundryvtt_docker_secrets_enable: false
+
 # secrets are saved in the config.json and added via [docker secrets](https://docs.docker.com/engine/swarm/secrets/)
 # Will be ignored if empty
 foundryvtt_docker_secrets: []
