@@ -9,5 +9,5 @@
   ansible.builtin.user:
     name: "{{ foundryvtt_docker_user }}"
     uid: "{{ foundryvtt_docker_uid }}"
-    system: "{{ foundryvtt_docker_users_system | default(omit) }}"
+    system: "{{ foundryvtt_docker_user_system | default(omit) }}"
     state: "present"
