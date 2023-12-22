@@ -65,6 +65,7 @@ foundryvtt_docker_user: "homelab"
 foundryvtt_docker_uid: "900"
 foundryvtt_docker_group: "homelab"
 foundryvtt_docker_gid: "900"
+foundryvtt_docker_user_system: true
 
 # which container version to install
 # https://github.com/felddy/foundryvtt-docker
@@ -77,15 +78,15 @@ foundryvtt_docker_secrets_enable: false
 # Will be ignored if empty
 foundryvtt_docker_secrets: []
 # Overrides FOUNDRY_ADMIN_KEY environment variable.
-# - 'foundry_admin_key: ""'
+# - '"foundry_admin_key": ""'
 # Overrides FOUNDRY_LICENSE_KEY environment variable.
-# - 'foundry_license_key: ""'
+# - '"foundry_license_key": ""'
 # Overrides FOUNDRY_PASSWORD environment variable.
-# - 'foundry_password: ""'
+# - '"foundry_password": ""'
 # Overrides FOUNDRY_PASSWORD_SALT environment variable.
-# - 'foundry_password_salt: ""'
+# - '"foundry_password_salt": ""'
 # Overrides FOUNDRY_USERNAME environment variable.
-# - 'foundry_username: ""'
+# - '"foundry_username": ""'
 
 # additional docker compose environment variables
 # https://github.com/felddy/foundryvtt-docker?tab=readme-ov-file#optional-variables
