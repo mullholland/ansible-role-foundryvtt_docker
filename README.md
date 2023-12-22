@@ -65,6 +65,7 @@ foundryvtt_docker_user: "homelab"
 foundryvtt_docker_uid: "900"
 foundryvtt_docker_group: "homelab"
 foundryvtt_docker_gid: "900"
+foundryvtt_docker_users_system: true
 
 # which container version to install
 # https://github.com/felddy/foundryvtt-docker
