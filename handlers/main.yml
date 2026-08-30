@@ -1,9 +1,9 @@
 ---
-- name: foundryvtt_systemd_reload
+- name: Foundryvtt systemd reload
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: foundryvtt_restart
+- name: Foundryvtt restart
   ansible.builtin.service:
     name: "foundryvtt"
     state: restarted

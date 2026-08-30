@@ -1,5 +1,5 @@
 ---
-- name: foundryvtt | set application facts
+- name: foundryvtt | Set application facts
   ansible.builtin.set_fact:
     app_name: "foundryvtt"
     app_image: "{{ foundryvtt_docker_version }}"
@@ -31,22 +31,22 @@
     mode: "0640"
     owner: "{{ app_user }}"
     group: "{{ app_group }}"
-  notify: foundryvtt_restart
+  notify: Foundryvtt restart
 
-- name: foundryvtt | get docker executable path
+- name: foundryvtt | Get docker executable path
   ansible.builtin.command:
     cmd: "which docker"
   changed_when: false
   register: foundryvtt_docker_executable_path
 
-- name: "foundryvtt | create docker-compose.yml"
+- name: "foundryvtt | Create docker-compose.yml"
   ansible.builtin.template:
     src: "docker-compose.yml.j2"
     dest: "{{ app_base_path }}/{{ app_name }}/docker-compose.yml"
     mode: "0640"
     owner: "{{ app_user }}"
     group: "{{ app_group }}"
-  notify: foundryvtt_restart
+  notify: Foundryvtt restart
 
 - name: "foundryvtt | Create systemd service"
   ansible.builtin.template:
@@ -56,5 +56,5 @@
     owner: "root"
     group: "root"
   notify:
-    - foundryvtt_systemd_reload
-    - foundryvtt_restart
+    - Foundryvtt systemd reload
+    - Foundryvtt restart
