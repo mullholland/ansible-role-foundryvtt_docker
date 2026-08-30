@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   gather_facts: true
   vars:
     foundryvtt_docker_secrets_enable: true
@@ -9,4 +8,4 @@
       - 'foundry_admin_key: "SuperSecret"'
 
   roles:
-    - role: "ansible-role-foundryvtt_docker"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
