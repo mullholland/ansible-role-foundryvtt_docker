@@ -15,6 +15,10 @@ services:
     hostname: "{{ app_name }}"
     init: true
     restart: always
+{% if foundryvtt_docker_logging %}
+    logging:
+      {{ foundryvtt_docker_logging | to_nice_yaml(indent=2) | indent(6) | trim }}
+{% endif %}
     volumes:
       - {{ app_base_path }}/{{ app_name }}/data:/data
     environment:

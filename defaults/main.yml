@@ -52,3 +52,11 @@ foundryvtt_docker_labels:
   - "traefik.http.routers.foundry.rule=Host(`foundry.example.com`)"
   - "traefik.http.routers.foundry.tls.certResolver=letsEncrypt"
   - "traefik.http.routers.foundry.tls=true"
+
+# Logging configuration of the container(s). Limits the json-file log size by default.
+# Set to {} to fall back to the docker daemon defaults.
+foundryvtt_docker_logging:
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
